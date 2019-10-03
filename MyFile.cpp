@@ -1,18 +1,3 @@
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <sys/types.h>
-#include <pwd.h>
-#include <grp.h>
-#include <dirent.h>
-#include <vector>
-#include <errno.h>
-#include <cstring>
-#include <cstdio>
 #include "MyFile.h"//including the header file
 
 using std::string;
@@ -90,19 +75,19 @@ MyFile::MyFile(string name_) {
 
 
     //checking if values are correct
-//    cout << "name: " << name << endl;
-//    cout << "size: " << size << endl;
-//    cout << "type: " << type << endl;
-//    cout << "owner ID: " << ownerID << endl;
-//      cout << "owner name: " << ownerName << endl;
-//    cout << "group ID: " << groupID << endl;
-//    cout << "group name: " << groupName << endl;
-//    cout << "permissions: " << permissions << endl;
-//    cout << "access time: " << accessTime << endl;
-//    cout << "modify time: " << modTime << endl;
-//    cout << "status change time: " << statusChangeTime << endl;
-//    cout << "file block size: " << blockSize << endl;
-    //cout << "number of children: " << children.size() << endl;
+    cout << "name: " << name << endl;
+    cout << "size: " << size << endl;
+    cout << "type: " << type << endl;
+    cout << "owner ID: " << ownerID << endl;
+    cout << "owner name: " << ownerName << endl;
+    cout << "group ID: " << groupID << endl;
+    cout << "group name: " << groupName << endl;
+    cout << "permissions: " << permissions << endl;
+    cout << "access time: " << accessTime << endl;
+    cout << "modify time: " << modTime << endl;
+    cout << "status change time: " << statusChangeTime << endl;
+    cout << "file block size: " << blockSize << endl;
+    cout << "number of children: " << children.size() << endl;
 }
 
 //Destructor
@@ -273,9 +258,12 @@ vector<MyFile> MyFile::getChildren() {
     return children;
 }
 
+void MyFile::setName(string newName){
+    renameFile(newName);
+}
 
-//int main() {
-//    MyFile testMyFile("poop");
-//    testMyFile.getOwnerName();
-//    testMyFile.getGroupName();
-//}
+
+int main() {
+    MyFile testMyFile("orange");
+    cout << testMyFile.getSize() << endl;
+}
