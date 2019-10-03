@@ -35,11 +35,14 @@ MyFile::MyFile(string name_) {
     
     ownerID = stats.st_uid; 
     struct passwd pswd = *getpwuid(ownerID); //using getpwuid to get the owner name from the owner ID
-    char* username = pswd.pw_name; 
+    char* oname = pswd.pw_name; 
+    ownerName = oname;
     
+
     groupID = stats.st_gid;
     struct group grp = *getgrgid(groupID); //using getgrgid to get the group name from the group ID
-    char* groupName = grp.gr_name; 
+    char* gname = grp.gr_name; 
+    groupName = gname;
     
     //making a string representation of the permissions
     //start with a string permission that will hold the current permission
@@ -71,7 +74,7 @@ MyFile::MyFile(string name_) {
     permissions.append(permission);
     
     //access time FIx THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!
-    accessTime = stats.st_atime;
+    accessTime = stats.st_atime;   
     //modification time
     modTime = stats.st_mtime;
     //status change time
@@ -87,18 +90,18 @@ MyFile::MyFile(string name_) {
 
 
     //checking if values are correct
-    cout << "name: " << name << endl;
-    cout << "size: " << size << endl;
-    cout << "type: " << type << endl;
-    cout << "owner ID: " << ownerID << endl;
-    cout << "owner name: " << username << endl;
-    cout << "group ID: " << groupID << endl;
-    cout << "group name: " << groupName << endl;
-    cout << "permissions: " << permissions << endl;
-    cout << "access time: " << accessTime << endl;
-    cout << "modify time: " << modTime << endl;
-    cout << "status change time: " << statusChangeTime << endl;
-    cout << "file block size: " << blockSize << endl;
+//    cout << "name: " << name << endl;
+//    cout << "size: " << size << endl;
+//    cout << "type: " << type << endl;
+//    cout << "owner ID: " << ownerID << endl;
+//      cout << "owner name: " << ownerName << endl;
+//    cout << "group ID: " << groupID << endl;
+//    cout << "group name: " << groupName << endl;
+//    cout << "permissions: " << permissions << endl;
+//    cout << "access time: " << accessTime << endl;
+//    cout << "modify time: " << modTime << endl;
+//    cout << "status change time: " << statusChangeTime << endl;
+//    cout << "file block size: " << blockSize << endl;
     //cout << "number of children: " << children.size() << endl;
 }
 
@@ -109,8 +112,9 @@ MyFile::~MyFile() {
 
 void MyFile::Dump(ostream &fileStream) {
     char line[blockSize + 1] = {};
-    int numRead = 0;
-    ifstream myfile(name);
+    int numRead = 0; 
+    ifstream myfile;
+    myfile.open(name);
     if (!myfile.is_open()) {
         cout << "error ";
         errorNumber = errno;
@@ -152,9 +156,9 @@ void MyFile::removeFile() {
     type = 0;
     size = 0;
     ownerID = 0;
-    //fix - username.clear();
+    ownerName.clear();
     groupID = 0;
-    //fix (of type char, cant use clear) groupName.clear();
+    groupName.clear();
     permissions.clear();
     accessTime = 0;
     modTime = 0;
@@ -196,7 +200,6 @@ int MyFile::compareFiles(MyFile file) {
 void MyFile::Expand() {  
     struct stat stats = getStat(name); //accessing stat for the named file
     struct dirent *child;
-    cout << name.c_str() << endl;
     DIR *directory = opendir(name.c_str());
     if (!S_ISDIR(stats.st_mode) || directory == NULL) {
         cout << "not a directory" << endl;
@@ -204,7 +207,6 @@ void MyFile::Expand() {
     }
     while ((child = readdir(directory)) != NULL) {
         string childName(child->d_name);
-        cout << childName << endl;
         if (childName == "" || childName == "." || childName == "..") {
             continue;
         }
@@ -230,13 +232,18 @@ uid_t MyFile::getOwnerID() {
     return ownerID;
 }
 
-char MyFile::getUsername() {
-    return username; /////fix this man
+string MyFile::getOwnerName() {
+    return ownerName; /////fix this man
 }
 
 gid_t MyFile::getGroupID() {
     return groupID;
 }
+
+string MyFile::getGroupName() {
+    return groupName; 
+}
+
 
 string MyFile::getPermissions() {
     return permissions;
@@ -268,19 +275,7 @@ vector<MyFile> MyFile::getChildren() {
 
 
 //int main() {
-//    MyFile testMyFile("POOP");
-//    MyFile testMyFile3("poopy");
-//    MyFile testMyFile2("helloworld.cpp");
-//    //MyFile comparefile("helloworld.cpp");
-//    //testMyFile.renameFile(".");
-//   // cout << testMyFile.getErrorNum() << endl;
-//   // ofstream poopy("out.txt");
-//    testMyFile2.Dump(cout);
-//   //cout << testMyFile.getType()<< endl;
-//   // testMyFile.removeFile();
-//   //cout << testMyFile.getType() << endl;
-//  // testMyFile.compareFiles(comparefile);
-//   // testMyFile.Expand();
-//    //testMyFile2.Expand();
-//
+//    MyFile testMyFile("poop");
+//    testMyFile.getOwnerName();
+//    testMyFile.getGroupName();
 //}

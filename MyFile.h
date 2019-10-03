@@ -11,9 +11,9 @@ class MyFile {
         long size;
         mode_t type; 
         uid_t ownerID;
-        char username;
+        string ownerName;
         gid_t groupID;
-        char groupName;
+        string groupName;
         string permissions;
         time_t accessTime;
         time_t modTime;
@@ -29,8 +29,9 @@ class MyFile {
         long getSize();
         mode_t getType();
         uid_t getOwnerID();
-        char getUsername();
+        string getOwnerName();
         gid_t getGroupID();
+        string getGroupName();
         string getPermissions();
         time_t getAccessTime();
         time_t getModTime();
