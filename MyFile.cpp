@@ -347,7 +347,3 @@ void MyFile::Expand() {
     }
 }
 
-int main() {
-    MyFile test("lol");
-    cout << test.getModTime() << endl;
-}

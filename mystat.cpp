@@ -23,4 +23,3 @@ int main(int argc, char** argv) {
     cout << "Change: " << file.getSCTime() << endl;
 }
 
-
