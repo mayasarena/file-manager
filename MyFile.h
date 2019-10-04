@@ -1,3 +1,13 @@
+//
+// MyFile.h
+// CS3307 Individual Assignment
+//
+// Created by Maya Murad on 09/25/2019
+//
+// This is a MyFile header file that declares 
+// data members and functions. 
+// 
+
 #ifndef MyFile_h
 #define MyFile_h
 
@@ -60,3 +70,4 @@ class MyFile {
 };
 
 #endif //MyFile_h
+
