@@ -160,6 +160,7 @@ void MyFile::Dump(ostream &fileStream) {
         fileStream << line; //dumping the lines into the file stream one by one
     }
     myfile.close();
+    errorNumber = 0;
 }
 
 //renamefile function takes a string as parameter and renames the file to this given name
@@ -170,6 +171,7 @@ void MyFile::renameFile(string newName) {
     value = rename(currentName, newName_);
     if (value == 0) {
         name = newName;
+        errorNumber = 0;
     }
     else { //error number is set if operation cannot be completed
         errorNumber = errno;
@@ -227,6 +229,7 @@ int MyFile::compareFiles(MyFile file) {
     myfile.close();
     otherFile.close();
     return 1; //1 means that the file contents are equivalent
+    errorNumber = 0;
 }
 
 //expand function fills the child vector with child objects from the given directory
@@ -245,6 +248,7 @@ void MyFile::Expand() {
         }
         MyFile newFile(name + "/" + childName); //creating a new file from the path
         children.push_back(newFile);
+        errorNumber = 0;
     }
 }
 

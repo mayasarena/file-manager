@@ -15,5 +15,12 @@ int main(int argc, char** argv) {
     MyFile file1(fileName1); //creating MyFile objects from the names
     MyFile file2(fileName2);
     file1.renameFile(file2.getName()); //using rename function to rename and move the files
+    if (errno == EXDEV) { //checking if an EXDEV error has occured, meaning files are on different file systems        
+        ofstream destination; //initilializing the ostream for the destination
+        destination.open(file2.getName()); 
+        file1.Dump(destination); //dumping the contents and closing the file below
+        destination.close();
+        file1.removeFile(); //removing the original file
+    }
 }
 
