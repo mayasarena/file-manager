@@ -1,11 +1,13 @@
-//
-// mymv.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/02/2019
-//
-// This is the implementation of the mymv utility.
-//
+/**
+    CS3307 Individual Assignment
+    mymv.cpp
+    Purpose: implementation of the mymv utility
+    Can move files around a file system
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

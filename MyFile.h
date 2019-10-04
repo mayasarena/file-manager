@@ -1,12 +1,12 @@
-//
-// MyFile.h
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 09/25/2019
-//
-// This is a MyFile header file that declares 
-// data members and functions. 
-// 
+/**
+    CS3307 Individual Assignment
+    MyFile.h
+    Purpose: MyFile header file
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #ifndef MyFile_h
 #define MyFile_h

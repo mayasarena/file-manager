@@ -1,11 +1,13 @@
-//
-// mystat.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/03/2019
-//
-// This is the implementation of the mystat utility.
-//
+/**
+    CS3307 Individual Assignment
+    mystat.cpp
+    Purpose: implementation of the mystat utility
+    Prints information about the file to the terminal
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

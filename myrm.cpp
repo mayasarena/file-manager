@@ -1,11 +1,13 @@
-//
-// myrm.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/03/2019
-//
-// This is the implementation of the myrm utility.
-// 
+/**
+    CS3307 Individual Assignment
+    myrm.cpp
+    Purpose: implementation of the myrm utility
+    Removes files from the file system
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

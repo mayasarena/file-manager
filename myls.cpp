@@ -1,11 +1,13 @@
-//
-// myls.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/02/2019
-//
-// This is the implementation of the myls utility.
-//
+/**
+    CS3307 Individual Assignment
+    myls.cpp
+    Purpose: implementation of the myls utility
+    Lists files and has an -l option for more information
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

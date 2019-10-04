@@ -1,11 +1,14 @@
-//
-// mydiff.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/03/2019
-//
-// This is the implementation of the mydiff utility.
-// 
+/**
+    CS3307 Individual Assignment
+    mydiff.cpp
+    Purpose: implementation of the mydiff utility
+    Compares the two given files and informs user
+    if their contents are the same or not
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

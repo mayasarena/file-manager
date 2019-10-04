@@ -1,11 +1,13 @@
-//
-// mycat.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 10/03/2019
-//
-// This is the implementation of the mycat utility.
-//
+/**
+    CS3307 Individual Assignment
+    mycat.cpp
+    Purpose: implementation of the mycat utility
+    Prints contents of file to the terminal
+    Date: October 3 2019
+
+    @author Maya Murad
+    @studentnum 250850926
+*/
 
 #include "MyFile.cpp"
 

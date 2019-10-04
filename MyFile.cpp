@@ -1,25 +1,37 @@
-//
-// MyFile.cpp
-// CS3307 Individual Assignment
-//
-// Created by Maya Murad on 09/25/2019
-//
-// This file contains the implementation of the MyFile object
-// along with functions that go along with it.
-// 
+/**
+    CS3307 Individual Assignment
+    MyFile.cpp
+    Purpose: a MyFile class that is a part of a File Manager system
+    Date: October 3 2019
 
+    @author Maya Murad
+    @studentnum 250850926
+*/
+#include <time.h>
 #include "MyFile.h"
 
 using std::string;
 using namespace std;
 
+
+/**
+    returns a stat structure
+    @param name the string name of the file that 
+    we want to receive info about
+    @return buf a stat struct which can be used 
+    to learn more about the file
+*/
 struct stat getStat(string name) { //creates a stat struct in order to get access to all of its contents
     struct stat buf;
     int success = stat(name.c_str(), &buf);
     return buf;
 }
 
-MyFile::MyFile(string name_) { //constructor
+/**
+    Constructor - constructs a MyFile object
+    @param name_ the string name of the file
+*/
+MyFile::MyFile(string name_) {
     //initializing variables:
     name = name_;
     struct stat stats = getStat(name); //accessing stat for the named file
@@ -71,73 +83,143 @@ MyFile::MyFile(string name_) { //constructor
     errorNumber = 0; 
 }
 
-MyFile::~MyFile() { //destructor
+/**
+    Destructor - destructs a MyFile object
+*/
+MyFile::~MyFile() {
             
 }
 
 //creating getters:
+
+/**
+    Returns the name of the file
+    @return the name as a string
+*/
 string MyFile::getName() {
     return name;
 }
 
+/**
+    Returns the size of the file
+    @return the size as a long
+*/
 long MyFile::getSize() {
     return size;
 }
 
+/**
+    Returns the type of the file
+    @return the type as a mode_t
+*/
 mode_t MyFile::getType() {
     return type;
 }
 
+/**
+    Returns the owner ID of the file
+    @return the owner id as a uid_t
+*/
 uid_t MyFile::getOwnerID() {
     return ownerID;
 }
 
+/**
+    Returns the owner name of the file
+    @return the owner name
+*/
 string MyFile::getOwnerName() {
     return ownerName; 
 }
 
+/**
+    Returns the group ID of the file
+    @return group ID as a gid_t
+*/
 gid_t MyFile::getGroupID() {
     return groupID;
 }
 
+/**
+    Returns the group name of the file
+    @return group name as a string
+*/
 string MyFile::getGroupName() {
     return groupName; 
 }
 
-
+/**
+    Returns the permissions of the file
+    @return permissions as a string
+*/
 string MyFile::getPermissions() {
     return permissions;
 }
 
+/**
+    Returns the access time of the file
+    @return access time as a time_t
+*/
 time_t MyFile::getAccessTime() {
     return accessTime;
 }
 
+/**
+    Returns the mod time of the file
+    @return mod time as a time_t
+*/
 time_t MyFile::getModTime() {
     return modTime;
 }
 
+/**
+    Returns the status time of the file
+    @return status time as a time_t
+*/
 time_t MyFile::getSCTime() {
     return statusChangeTime;
 }
 
+/**
+    Returns the children(a listing of 
+    files and directories) of the file
+    @return children as MyFile objects in a vector,
+    empty if it does not contain the objects yet
+    or if the file is not a directory
+*/
 vector<MyFile> MyFile::getChildren() {
     return children;
 }
 
+/**
+    Returns the block size of the file
+    @return block size as a blksize_t
+*/
 blksize_t MyFile::getBlockSize() {
     return blockSize;
 }
 
+/**
+    Returns the error number of the file
+    @return error number as an int
+*/
 int MyFile::getErrorNum() {
     return errorNumber;
 }
 
+/**
+    Sets the name of the file
+    @param the new name of the file as a string
+*/
 void MyFile::setName(string newName){
     renameFile(newName);
 }
 
-//dump function takes an ostream as parameter and dumps the file contents to the ostream
+/**
+    Dump function dumps the contents of a file into a file stream
+    @param an ostream of the file you would like the content 
+    to be dumped to
+*/
 //ostream was used since cout is an ostream, making it efficient in printing to the terminal
 void MyFile::Dump(ostream &fileStream) { 
     struct stat stats = getStat(name); //accessing stat for the named file
@@ -163,7 +245,11 @@ void MyFile::Dump(ostream &fileStream) {
     errorNumber = 0;
 }
 
-//renamefile function takes a string as parameter and renames the file to this given name
+/**
+    renameFile renames the file
+    @param string newName which is the new name
+    to be given to the file
+*/
 void MyFile::renameFile(string newName) {
     int value;
     const char *currentName = name.c_str();
@@ -178,7 +264,9 @@ void MyFile::renameFile(string newName) {
     }
 }
 
-//removefile function removes the current file
+/**
+    removeFile removes the file
+*/
 void MyFile::removeFile() {
     const char *file = name.c_str();
     int value;
@@ -204,8 +292,12 @@ void MyFile::removeFile() {
     errorNumber = 0;
 }
 
-//comparefiles function takes a file object as parameter and compares the file contents
-//with this file
+/**
+    compareFiles compares the contents of two files
+    @param a MyFile object that you would like to compare
+    @return an int, 0 if they are different
+    and 1 if they are the same
+*/
 int MyFile::compareFiles(MyFile file) {
     if (file.getSize() != size) { //if files have different sizes, we can assume that
         return 0; //the contents are not the same. 0 is returned to indicate they are not the same.
@@ -232,7 +324,10 @@ int MyFile::compareFiles(MyFile file) {
     errorNumber = 0;
 }
 
-//expand function fills the child vector with child objects from the given directory
+/**
+    Expand fills the children vector with MyFile objects of each file
+    This only works on directories
+*/
 void MyFile::Expand() {  
     struct stat stats = getStat(name); //accessing stat for the named file
     struct dirent *child;
@@ -252,3 +347,7 @@ void MyFile::Expand() {
     }
 }
 
+int main() {
+    MyFile test("lol");
+    cout << test.getModTime() << endl;
+}
