@@ -7,7 +7,6 @@
     @author Maya Murad
     @studentnum 250850926
 */
-#include <time.h>
 #include "MyFile.h"
 
 using std::string;
