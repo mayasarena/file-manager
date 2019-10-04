@@ -1,0 +1,7 @@
+To run the program:
+1. All files must be in the same directory and you must be in this directory.
+2. Make sure that install.sh is executable. 
+To do this, type in the command line: chmod +x install.sh 
+3. Run install.sh by typing: ./install.sh
+4. The program is ready to be used. 
+Commands can be accessed by simply typing: myls arg1 arg2, mycat arg1 ar2 ar3, myrm arg1 ar2, etc
